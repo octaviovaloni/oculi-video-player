@@ -2312,6 +2312,7 @@ dependencies = [
  "tauri",
  "tauri-build",
  "tauri-plugin-opener",
+ "walkdir",
 ]
 
 [[package]]

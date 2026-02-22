@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const func = async () => {
-    invoke("func", {})
+    invoke("list_videos", {path: "D:/NVIDIA VIDEOS"})
   }
 
   return (
