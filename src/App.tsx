@@ -10,6 +10,7 @@ function App() {
 
   return (
     <div>
+      <h1>Oculi (Pre Alpha)</h1>
       <button onClick={func}>Invoke "func"</button>
     </div>
   );
