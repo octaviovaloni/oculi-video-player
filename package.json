@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "postinstall": "node scripts/download-ffmpeg.mjs",
     "preview": "vite preview",
     "tauri": "tauri"
   },

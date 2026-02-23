@@ -15,8 +15,13 @@ function App() {
   const [search_folder, set_search_folder] = useState<string>(".")
 
   const list_videos = async () => {
-    const videos_found: Video[] = await invoke("list_videos", {path: search_folder});
-    set_video_list(videos_found)
+    try {
+      const videos_found: Video[] = await invoke("list_videos", {path: search_folder});
+      set_video_list(videos_found)
+    } catch (e) {
+      console.error("Error desde Rust:", e);
+      alert("Error desde Rust:\n" + String(e));
+    }
   }
   const open_folder_selector = async () => {
     const selected = await open({directory: true, multiple: false});

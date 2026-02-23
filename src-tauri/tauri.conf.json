@@ -23,6 +23,10 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all"
+    "targets": "all",
+    "resources": [
+      "bin/ffprobe.exe",
+      "bin/ffmpeg.exe"
+    ]
   }
 }
