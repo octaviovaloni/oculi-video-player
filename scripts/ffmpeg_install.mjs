@@ -15,7 +15,7 @@ const ROOT = process.cwd();
 const BIN_DIR = path.join(ROOT, "src-tauri", "bin");
 const MARKER = path.join(BIN_DIR, ".ffmpeg-version");
 
-const FFMPEG_ZIP_URL = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z";
+const FFMPEG_ZIP_URL = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip";
 const VERSION_TAG = "gyan-ffmpeg-git-essentials";
 
 function ensureDir(dir) {
@@ -84,12 +84,9 @@ async function main() {
   const ffmpegOut = path.join(BIN_DIR, "ffmpeg.exe");
   const ffprobeOut = path.join(BIN_DIR, "ffprobe.exe");
 
-  if (fileExists(ffmpegOut) && fileExists(ffprobeOut) && fileExists(MARKER)) {
-    const v = fs.readFileSync(MARKER, "utf8").trim();
-    if (v === VERSION_TAG) {
-      console.log("[ffmpeg] Already present. Skipping download.");
-      return;
-    }
+  if (fileExists(ffmpegOut) | fileExists(ffprobeOut) | fileExists(MARKER)) {
+    console.log("[ffmpeg] Already present. Skipping download.");
+    return;
   }
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "ffmpeg-"));
@@ -104,6 +101,9 @@ async function main() {
 
   const ffmpegSrc = findExe(extractDir, "ffmpeg.exe");
   const ffprobeSrc = findExe(extractDir, "ffprobe.exe");
+
+  console.log(ffprobeSrc)
+  console.log(ffmpegSrc)
 
   if (!ffmpegSrc || !ffprobeSrc) {
     throw new Error("Couldn't find ffmpeg.exe or ffprobe.exe inside the downloaded .7z");
