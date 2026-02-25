@@ -6,7 +6,7 @@ import "./App.css";
 type Video = {
     name: string
     path: String
-    miniature_path: String
+    thumbnail_path: String
     duration: number
 }
 
