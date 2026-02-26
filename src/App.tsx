@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { open } from "@tauri-apps/plugin-dialog";
 import { invoke } from "@tauri-apps/api/core";
+import { convertFileSrc } from "@tauri-apps/api/core";
 import "./App.css";
 
 type Video = {
@@ -40,7 +41,12 @@ function App() {
       <p>Search Folder: {search_folder}</p>
       <ul>
         {video_list.map((video: Video, index) => (
-          <li key={index}>{video.name} | {video.duration} | {video.path}</li>
+          <li key={index}>
+            {video.name} | {video.duration} | {video.path} | 
+            <video controls width="100%">
+              <source src={convertFileSrc(video.path.toString())} />
+            </video>
+          </li>
         ))}
       </ul>
     </div>
